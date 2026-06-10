@@ -1,83 +1,102 @@
-# DOX framework
+# ODOX framework
 
-- DOX is highly performant AGENTS.md hierarchy installed here
-- Agent must follow DOX instructions across any edits
+- ODOX is a self-documenting documentation contract for Odoo repositories.
+- Agents must follow this file before editing code or durable documentation.
+
+## Purpose
+
+- Keep Odoo repositories understandable at the repo level and at the module level.
+- Make module `README.md` files the primary local contract for both humans and AI agents.
+- Keep `AGENTS.md` focused on agent-specific workflow, routing, and hazards that do not belong in a human-facing README.
 
 ## Core Contract
 
-- AGENTS.md files are binding work contracts for their subtrees
-- Work products, source materials, instructions, records, assets, and durable docs must stay understandable from the nearest applicable AGENTS.md plus every parent AGENTS.md above it
+- The root `AGENTS.md` is mandatory and owns repo-wide workflow, indexing, and documentation maintenance rules.
+- The default durable boundary is the Odoo module or addon, not every nested folder.
+- Each module should have one primary `README.md` that reflects the current code in that module.
+- Module `AGENTS.md` files are optional and additive. They may refine local agent behavior but must not duplicate or contradict the module README or this root contract.
+- When code and documentation disagree, treat the current code as the source of truth and bring the documentation back into sync.
 
 ## Read Before Editing
 
-1. Read the root AGENTS.md
-2. Identify every file or folder you expect to touch
-3. Walk from the repository root to each target path
-4. Read every AGENTS.md found along each route
-5. If a parent AGENTS.md lists a child AGENTS.md whose scope contains the path, read that child and continue from there
-6. Use the nearest AGENTS.md as the local contract and parent docs for repo-wide rules
-7. If docs conflict, the closer doc controls local work details, but no child doc may weaken DOX
+1. Read the root `AGENTS.md`.
+2. Identify whether the work is repo-wide or contained within one or more Odoo modules.
+3. For repo-wide work, read the root `README.md` and any directly relevant local docs.
+4. For module work, read that module's `README.md` first.
+5. If the module also has an `AGENTS.md`, read it after the module README and before editing.
+6. If multiple modules are affected, repeat the read path for each affected module.
+7. Use the nearest applicable module README as the local shared contract and the nearest applicable `AGENTS.md` as the local agent supplement.
 
-Do not rely on memory. Re-read the applicable DOX chain in the current session before editing.
+Do not rely on memory. Re-read the applicable ODOX chain in the current session before editing.
 
 ## Update After Editing
 
-Every meaningful change requires a DOX pass before the task is done.
+Every meaningful change requires an ODOX pass before the task is done.
 
-Update the closest owning AGENTS.md when a change affects:
+Update the closest owning documentation when a change affects:
 
 - purpose, scope, ownership, or responsibilities
-- durable structure, contracts, workflows, or operating rules
+- durable structure, models, views, security, workflows, dependencies, or extension points
 - required inputs, outputs, permissions, constraints, side effects, or artifacts
+- verification commands, test entrypoints, or operational checks
 - user preferences about behavior, communication, process, organization, or quality
-- AGENTS.md creation, deletion, move, rename, or index contents
+- documentation structure, including `README.md` or `AGENTS.md` creation, deletion, move, rename, or index contents
 
-Update parent docs when parent-level structure, ownership, workflow, or child index changes. Update child docs when parent changes alter local rules. Remove stale or contradictory text immediately. Small edits that do not change behavior or contracts may leave docs unchanged, but the DOX pass still must happen.
+Update the root docs when repo-wide structure or module inventory changes. Update a module README when local code behavior or structure changes. Update a module `AGENTS.md` only when agent-specific local instructions change.
 
-## Hierarchy
+## Module Documentation Rules
 
-- Root AGENTS.md is the DOX rail: project-wide instructions, global preferences, durable workflow rules, and the top-level Child DOX Index
-- Child AGENTS.md files own domain-specific instructions and their own Child DOX Index
-- Each parent explains what its direct children cover and what stays owned by the parent
-- The closer a doc is to the work, the more specific and practical it must be
+- Default to `README.md` as the primary contract inside each Odoo module.
+- Keep module READMEs operational, technical, and aligned with current code. Avoid marketing copy as the main content.
+- A good module README usually covers:
+  - purpose and business scope
+  - main models, wizards, views, security areas, and data files
+  - integration points, dependencies, and extension seams
+  - verification or test entrypoints when they exist
+  - human-relevant hazards or invariants
+- Use 300 lines as a soft readability threshold for module READMEs.
+- If a module README grows much beyond 300 lines, review whether to split module responsibilities, trim stale prose, or move agent-only detail into an optional module `AGENTS.md`.
+- If a module cannot stay understandable near that threshold, treat it as a signal that the module boundary or documentation structure needs reconsideration.
 
-## Child Doc Shape
+## Optional Module AGENTS.md Rules
 
-- Create a child AGENTS.md when a folder becomes a durable boundary with its own purpose, rules, responsibilities, workflow, materials, or quality standards
-- Work Guidance must reflect the current standards of the project or user instructions; if there are no specific standards or instructions yet, leave it empty
-- Verification must reflect an existing check; if no verification framework exists yet, leave it empty and update it when one exists
-
-Default section order:
-- Purpose
-- Ownership
-- Local Contracts
-- Work Guidance
-- Verification
-- Child DOX Index
+- Create a module `AGENTS.md` only when at least one of these is true:
+  - the module has agent-specific edit hazards that do not belong in the README
+  - the module has a non-obvious maintenance workflow or generated-artifact rule
+  - the module has local constraints that would clutter the human-facing README
+  - the module has multiple subareas that need explicit agent routing
+- Keep module `AGENTS.md` files short and supplemental.
+- Do not restate the full README in `AGENTS.md`.
+- No deeper child `AGENTS.md` files should be created inside a module unless the user explicitly wants an exception.
 
 ## Style
 
-- Keep docs concise, current, and operational
-- Document stable contracts, not diary entries
-- Put broad rules in parent docs and concrete details in child docs
-- Prefer direct bullets with explicit names
-- Do not duplicate rules across many files unless each scope needs a local version
-- Delete stale notes instead of explaining history
-- Trim obvious statements, repeated rules, misplaced detail, and warnings for risks that no longer exist
+- Keep docs concise, current, and operational.
+- Prefer durable facts over intentions or roadmap language.
+- Put broad workflow rules in the root `AGENTS.md`.
+- Put module behavior and code-facing context in the module `README.md`.
+- Put agent-only constraints in optional module `AGENTS.md`.
+- Delete stale or contradictory text immediately instead of explaining history.
 
-## Closeout
+## Verification
 
-1. Re-check changed paths against the DOX chain
-2. Update nearest owning docs and any affected parents or children
-3. Refresh every affected Child DOX Index
-4. Remove stale or contradictory text
-5. Run existing verification when relevant
-6. Report any docs intentionally left unchanged and why
+- Before finishing meaningful work in a module, verify that the module README still matches the current code.
+- Before finishing repo-wide documentation changes, verify that root guidance, module rules, and indexes agree with each other.
+- When an existing automated check exists, run it. When none exists, perform a manual consistency review of the touched docs and code.
 
 ## User Preferences
 
-When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md
+- Prefer module-level `README.md` as the main shared contract for humans and agents.
+- Keep the root model hybrid: root `AGENTS.md` for repo-wide agent workflow, root `README.md` for human-facing overview.
+- Treat 300 lines as a soft README review threshold, not a hard cap.
+- Keep module `AGENTS.md` rare and justified by real agent-only needs.
 
 ## Child DOX Index
 
-This project is not yet indexed. Before continuing you must scan the project, build the DOX tree and replace this message with the actual index. Go deep and scan files recursively to properly evaluate complexity and create nested DOX files where needed.
+- Root scope: this file currently owns the entire repository.
+- Human-facing root overview: [README.md](C:\Users\pirui\Workspace\piruin\odox\README.md)
+- No child `AGENTS.md` files exist yet in this starter repository.
+- Expected adopter structure:
+  - repo root: root `AGENTS.md` plus root `README.md`
+  - each Odoo module: module `README.md`
+  - exceptional modules only: supplemental module `AGENTS.md`
