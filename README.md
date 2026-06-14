@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./banner.jpg" alt="ODOX" width="100%">
+  <img src="./banner.png" alt="ODOX" width="100%">
 </p>
 
 ## What ODOX is
@@ -44,11 +44,6 @@ A module `README.md` should stay technical, concise, and aligned with current co
 - verification or test entrypoints when they exist
 - important human-relevant hazards or invariants
 
-ODOX treats 300 lines as a soft readability threshold, not a hard cap. If a module README grows beyond that, review whether to:
-
-- split module responsibilities
-- trim stale or redundant prose
-- move agent-only detail into a small optional `AGENTS.md`
 
 ## When to add module AGENTS.md
 
