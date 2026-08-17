@@ -1,0 +1,7 @@
+{
+  "operation": "/odox check module demo_addon",
+  "assertions": [
+    {"kind": "unchanged", "path": "AGENTS.md"},
+    {"kind": "unchanged", "path": "demo_addon/README.md"}
+  ]
+}

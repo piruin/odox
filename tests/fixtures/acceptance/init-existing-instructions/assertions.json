@@ -1,0 +1,11 @@
+{
+  "operation": "/odox init",
+  "assertions": [
+    {"kind": "contains", "path": "AGENTS.md", "text": "<!-- odox:managed:start -->"},
+    {"kind": "contains", "path": "AGENTS.md", "text": "<!-- odox:managed:end -->"},
+    {"kind": "contains", "path": "AGENTS.md", "text": "The local retention policy is authoritative."},
+    {"kind": "exists", "path": ".agents/odox/contract.md"},
+    {"kind": "exists", "path": ".agents/odox/.upstream-base.md"},
+    {"kind": "exists", "path": ".agents/odox/metadata.json"}
+  ]
+}

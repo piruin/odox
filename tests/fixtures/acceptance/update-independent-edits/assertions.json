@@ -1,0 +1,10 @@
+{
+  "setup": "Temporarily make installed-contract.md the installed local ODOX contract, then use update local.",
+  "operation": "/odox update local",
+  "assertions": [
+    {"kind": "contains", "path": ".agents/odox/contract.md", "text": "Local retention policy: keep records for 20 years."},
+    {"kind": "contains", "path": ".agents/odox/contract.md", "text": "Verify changed modules before release."},
+    {"kind": "contains", "path": ".agents/odox/.upstream-base.md", "text": "Verify changed modules before release."},
+    {"kind": "output_contains", "path": "operation-output.md", "text": "merged"}
+  ]
+}

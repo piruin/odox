@@ -1,0 +1,7 @@
+{
+  "operation": "/odox document module care_note",
+  "assertions": [
+    {"kind": "contains", "path": "care_note/README.md", "text": "Curated prose: notes belong to the community-care workflow."},
+    {"kind": "contains", "path": "care_note/README.md", "text": "care.note"}
+  ]
+}

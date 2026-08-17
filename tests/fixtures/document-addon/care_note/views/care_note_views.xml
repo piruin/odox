@@ -1,0 +1,7 @@
+<odoo>
+  <record id="care_note_view_tree" model="ir.ui.view">
+    <field name="name">care.note.tree</field>
+    <field name="model">care.note</field>
+    <field name="arch" type="xml"><tree><field name="name"/></tree></field>
+  </record>
+</odoo>

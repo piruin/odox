@@ -1,0 +1,23 @@
+{
+  "fixtures": [
+    {"name": "init-without-root-instructions", "observe": ["creates root AGENTS bootstrap", "copies local contract and base", "reports README gaps only"]},
+    {"name": "init-with-existing-instructions", "observe": ["preserves original bytes outside markers", "adds one managed section"]},
+    {"name": "init-already-managed", "observe": ["does not duplicate or rewrite root instructions"]},
+    {"name": "update-unchanged-local", "observe": ["accepts new upstream contract", "advances base after acceptance"]},
+    {"name": "update-independent-edits", "observe": ["preserves local policy", "applies independent upstream policy"]},
+    {"name": "update-policy-conflict", "observe": ["explains conflict", "does not advance base before decision"]},
+    {"name": "update-local-offline", "observe": ["does not contact network", "uses installed canonical contract"]},
+    {"name": "update-interrupted", "observe": ["leaves base snapshot unchanged"]},
+    {"name": "check-missing-bootstrap", "observe": ["fast check reports missing markers"]},
+    {"name": "check-missing-contract", "observe": ["fast check reports missing local contract or base"]},
+    {"name": "check-invalid-metadata", "observe": ["fast check reports invalid version metadata"]},
+    {"name": "check-compliant", "observe": ["fast check passes structural validation"]},
+    {"name": "check-module-selection", "observe": ["includes fast root validation", "audits selected modules only"]},
+    {"name": "check-changed-modules", "observe": ["derives audit scope from Git changes"]},
+    {"name": "document-missing-readme", "observe": ["creates README from verified addon contents"]},
+    {"name": "document-curated-readme", "observe": ["preserves useful prose", "corrects evidence-backed drift"]},
+    {"name": "document-ambiguous-meaning", "observe": ["asks before changing business meaning"]},
+    {"name": "status-read-only", "observe": ["writes nothing", "reports versions and context-aware hint"]},
+    {"name": "package-validation", "observe": ["valid metadata", "all linked resources exist", "semantic versions match"]}
+  ]
+}

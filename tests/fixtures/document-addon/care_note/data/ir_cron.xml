@@ -1,0 +1,8 @@
+<odoo>
+  <record id="ir_cron_archive_care_notes" model="ir.cron">
+    <field name="name">Archive care notes</field>
+    <field name="model_id" ref="model_care_note"/>
+    <field name="state">code</field>
+    <field name="code">model.search([('active', '=', True)])</field>
+  </record>
+</odoo>

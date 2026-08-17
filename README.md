@@ -1,83 +1,70 @@
 <p align="center">
-  <img src="./banner.png" alt="ODOX" width="100%">
+  <img src="./banner.jpg" alt="ODOX" width="100%">
 </p>
 
 ## What ODOX is
 
-ODOX is a self-documenting `AGENTS.md` framework for Odoo repositories.
+ODOX is a self-documenting documentation contract for Odoo repositories. It is
+distributed as one agent-independent skill: install it once, then initialize
+each repository with a durable local contract that agents can follow without
+ODOX being installed.
 
-It keeps one strong agent contract at the repository root, then uses each Odoo module's `README.md` as the main local contract for both humans and AI agents.
+The root `AGENTS.md` remains the repository-wide agent workflow. Each Odoo
+module's `README.md` is the main technical contract for people and agents.
+Optional module `AGENTS.md` files are reserved for real agent-only hazards.
 
-That means:
+## Install
 
-- the root `AGENTS.md` owns repo-wide workflow, indexing, and documentation rules
-- each module `README.md` explains the current module behavior and structure
-- module `AGENTS.md` is optional and only exists for agent-specific hazards or workflows
-- code wins when docs drift, and the docs must be updated back into sync
+Install ODOX globally with the open Skills CLI:
 
-The goal is simple: less recursive AGENTS sprawl, better module documentation, and a documentation shape that fits how Odoo repositories are actually maintained.
+```bash
+npx skills add piruin/odox@odox -g -a codex
+```
 
-## ODOX model
+Slash commands work on hosts that provide them. Every operation also accepts
+plain language, for example: “Initialize ODOX in this repository.” Advanced
+project-local installation remains available through the Skills CLI, but global
+installation is the normal onboarding path. Keep local skill payloads out of a
+repository with clone-local Git excludes if that advanced mode is used.
+
+## Lifecycle
+
+| Request | Result |
+| --- | --- |
+| `/odox` | Read-only status, installed/base versions, and a useful next step. |
+| `/odox init` | Preserves root instructions, adds one hidden managed bootstrap, and stores an editable local contract plus its upstream base. |
+| `/odox update` | Refreshes only the global ODOX skill, then performs an agent-led semantic three-way update. |
+| `/odox update local` | Updates against the installed copy without network access. |
+| `/odox check` | Runs inexpensive structural validation. Use `full`, `changed`, or module paths for semantic audits. |
+| `/odox document` | Deliberately creates or maintains module READMEs; it is never an initialization side effect. |
+
+Initialized repositories store their editable contract, exact upstream base,
+and version metadata under `.agents/odox/`. Existing repository instructions
+always take precedence. ODOX surfaces same-policy update conflicts for the
+maintainer instead of silently applying a text merge.
+
+## Contract model
 
 ODOX uses a hybrid structure:
 
 1. Repository root
-
-- `AGENTS.md` is mandatory
-- `README.md` stays human-facing
-
+   - `AGENTS.md` is mandatory and owns workflow, indexing, and hazards.
+   - `README.md` is human-facing.
 2. Odoo module
+   - `README.md` is the default primary technical contract.
+   - `AGENTS.md` is optional and supplemental.
 
-- `README.md` is the default primary contract
-- `AGENTS.md` is optional and supplemental
+Module READMEs should describe current purpose, behavior, models, views,
+security, dependencies, extension seams, verification, and important
+invariants. Around 300 lines is a review threshold, not a hard limit.
 
-This keeps the repo-level workflow explicit while making module documentation readable and shared.
+## Source repository
 
-## Module README expectations
-
-A module `README.md` should stay technical, concise, and aligned with current code. It should usually cover:
-
-- purpose and business scope
-- main models, wizards, views, security, and data areas
-- dependencies and integration points
-- extension seams and important workflows
-- verification or test entrypoints when they exist
-- important human-relevant hazards or invariants
-
-
-## When to add module AGENTS.md
-
-Add a module `AGENTS.md` only when the module has agent-specific context that should not live in the README, such as:
-
-- edit hazards or sequencing rules
-- generated files or special maintenance workflows
-- local constraints that would clutter the README
-- multiple internal subareas that need explicit agent routing
-
-If a module does not have those needs, keep it README-only.
-
-## How to use
-
-1. Copy [AGENTS.md](./AGENTS.md?plain=1) into the root of your Odoo repository.
-2. Keep your root `README.md` as the human-facing project overview.
-3. For each Odoo module, maintain a concise `README.md` that matches the current code.
-4. Add a module `AGENTS.md` only when agent-only instructions are genuinely needed.
-
-When working in a module, agents should read:
-
-1. the root `AGENTS.md`
-2. the module `README.md`
-3. the module `AGENTS.md`, if one exists
-
-## Why this differs from deep DOX trees
-
-Classic recursive AGENTS trees optimize for local precision everywhere. ODOX keeps that precision where it matters most for Odoo work:
-
-- repo-wide workflow at the root
-- module-level truth in each addon README
-- agent-only exceptions in small supplemental AGENTS files
-
-This better matches Odoo's natural durable boundary: the module.
+This repository is the documented source-repository exception: the single
+canonical reusable contract lives in
+[`.agents/skills/odox/references/contract.md`](.agents/skills/odox/references/contract.md),
+not as a duplicate root contract. The package contains the lifecycle protocol
+and fixture-based validation scenarios used to keep that contract release-ready.
 
 ## Credits
 
