@@ -1,0 +1,8 @@
+{
+  "setup": "Temporarily make installed-contract.md the installed local ODOX contract, then interrupt update local before acceptance.",
+  "operation": "/odox update local",
+  "assertions": [
+    {"kind": "unchanged", "path": ".agents/odox/.upstream-base.md"},
+    {"kind": "output_contains", "path": "operation-output.md", "text": "not advanced"}
+  ]
+}

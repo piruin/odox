@@ -1,0 +1,11 @@
+{
+  "operation": "/odox",
+  "assertions": [
+    {"kind": "unchanged", "path": "AGENTS.md"},
+    {"kind": "unchanged", "path": ".agents/odox/contract.md"},
+    {"kind": "unchanged", "path": ".agents/odox/.upstream-base.md"},
+    {"kind": "unchanged", "path": ".agents/odox/metadata.json"},
+    {"kind": "output_contains", "path": "operation-output.md", "text": "1.0.0"},
+    {"kind": "output_contains", "path": "operation-output.md", "text": "document"}
+  ]
+}

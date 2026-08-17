@@ -1,0 +1,8 @@
+{
+  "operation": "/odox init",
+  "assertions": [
+    {"kind": "count", "path": "AGENTS.md", "text": "<!-- odox:managed:start -->", "value": 1},
+    {"kind": "count", "path": "AGENTS.md", "text": "<!-- odox:managed:end -->", "value": 1},
+    {"kind": "unchanged", "path": ".agents/odox/contract.md"}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "setup": "Disable network access and temporarily make installed-contract.md the installed local ODOX contract.",
+  "operation": "/odox update local",
+  "assertions": [
+    {"kind": "contains", "path": ".agents/odox/contract.md", "text": "Installed contract"},
+    {"kind": "output_contains", "path": "operation-output.md", "text": "offline"}
+  ]
+}

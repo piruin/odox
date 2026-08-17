@@ -1,0 +1,3 @@
+<odoo>
+  <template id="care_note_report"><t t-name="care_note.report"><span t-out="doc.name"/></t></template>
+</odoo>

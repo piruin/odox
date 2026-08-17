@@ -1,0 +1,4 @@
+interface:
+  display_name: "ODOX"
+  short_description: "Maintain Odoo documentation contracts"
+  default_prompt: "Use $odox to inspect this repository status and suggest the next ODOX action."
