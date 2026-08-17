@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./banner.jpg" alt="ODOX" width="100%">
+  <img src="./banner.png" alt="ODOX" width="100%">
 </p>
 
 ## What ODOX is
