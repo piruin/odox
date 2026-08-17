@@ -66,6 +66,11 @@ canonical reusable contract lives in
 not as a duplicate root contract. The package contains the lifecycle protocol
 and fixture-based validation scenarios used to keep that contract release-ready.
 
+## Development
+
+GitHub Actions runs `python3 tests/test_skill_package.py` for every push and
+pull request. Run the same command locally before publishing a package change.
+
 ## Credits
 
 <p align="center">

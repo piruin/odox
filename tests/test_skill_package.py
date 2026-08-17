@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +16,16 @@ SKILL = ROOT / ".agents" / "skills" / "odox"
 
 
 class SkillPackageTests(unittest.TestCase):
+    def test_ci_workflow_runs_package_tests(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "package-tests.yml").read_text(encoding="utf-8")
+        for expected in (
+            "push:",
+            "pull_request:",
+            "actions/checkout@v6",
+            "python3 tests/test_skill_package.py",
+        ):
+            self.assertIn(expected, workflow)
+
     def test_skill_metadata_and_resources_are_discoverable(self) -> None:
         skill = (SKILL / "SKILL.md").read_text(encoding="utf-8")
         self.assertRegex(skill, r"(?m)^name: odox$")
@@ -81,7 +92,7 @@ class SkillPackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             destination = Path(temporary) / "repository"
             subprocess.run(
-                ["py", "-3", "tests/run_skill_fixture.py", "prepare", "status-read-only", str(destination)],
+                [sys.executable, "tests/run_skill_fixture.py", "prepare", "status-read-only", str(destination)],
                 cwd=ROOT,
                 check=True,
                 capture_output=True,
