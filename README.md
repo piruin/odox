@@ -55,8 +55,11 @@ ODOX uses a hybrid structure:
    - `AGENTS.md` is optional and supplemental.
 
 Module READMEs should describe current purpose, behavior, models, views,
-security, dependencies, extension seams, verification, and important
-invariants. Around 300 lines is a review threshold, not a hard limit.
+security, dependencies, extension seams, important invariants, and any
+non-obvious operational checks. Where access is relevant, security is a
+permission matrix; every listed dependency explains the capability it supplies
+and why the module needs it. They do not repeat standard Odoo testing
+conventions. Around 300 lines is a review threshold, not a hard limit.
 
 ## Source repository
 

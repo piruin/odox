@@ -1,6 +1,6 @@
 # ODOX contract
 
-**ODOX Contract Version:** `1.1.0`
+**ODOX Contract Version:** `1.2.0`
 
 ## Purpose
 
@@ -37,36 +37,58 @@ each Odoo module's `README.md` is the primary shared technical contract.
 Update the closest owning documentation after a meaningful change to purpose,
 scope, responsibilities, structure, models, views, security, workflows,
 dependencies, extension points, inputs, outputs, permissions, constraints,
-side effects, artifacts, verification, or operational checks. Update root docs
-when repository structure or module inventory changes.
+side effects, artifacts, or operational checks. Update root docs when
+repository structure or module inventory changes.
 
 Module READMEs normally cover purpose and business scope; key models, wizards,
 views, security, and data; integrations and dependencies; extension seams;
-verification; and important invariants. Review readability when a README grows
-past roughly 300 lines; this is a soft threshold, not a cap.
+important invariants; and any non-obvious validation or operational checks
+needed to use or maintain the module safely. Do not duplicate standard Odoo
+testing conventions. Review readability when a README grows past roughly 300
+lines; this is a soft threshold, not a cap.
 
 ## ODOX pass and documentation scope
 
 Run an ODOX pass for changes to observable workflows, responsibilities,
 structure, models, fields, wizards, views, reports, menus, scheduled actions,
 security, integrations, dependencies, extension seams, inputs, outputs,
-constraints, generated artifacts, verification, deployment expectations,
-upgrade behavior, data lifecycle, documentation structure, or user
-preferences. Formatting, comments, translations, internal refactors, and test
-implementation alone do not require README changes unless documented behavior
-changes.
+constraints, generated artifacts, deployment expectations, upgrade behavior,
+data lifecycle, documentation structure, or user preferences. Formatting,
+comments, translations, internal refactors, and test implementation alone do
+not require README changes unless documented behavior changes.
 
 Document only behavior a module owns or materially changes. Do not restate
 generic Odoo conventions, unchanged inherited fields, cosmetic-only view
 inheritance, or repository-wide workflow. State explicitly when a module has
 no standalone menu rather than inventing one.
 
-## Security, extensions, and upgrades
+## Security, dependencies, extensions, and upgrades
 
 Security changes are meaningful. When changing ACLs, record rules, groups,
 approval paths, sudo behavior, company visibility, ownership constraints, or
 field/view visibility, update the owning README with the audience, major
 permission boundaries, exceptional access, and ownership assumptions.
+
+When the module defines or changes security access, present it as a concise
+permission matrix rather than a list of security files. For each protected
+model or resource, show the relevant audience or group, allowed operations,
+record scope or rule, and exceptional access. Explain file names only when
+they add a material behavior not visible in the matrix. State that there is no
+custom security context when that is the case.
+
+Use this shape when a matrix is needed:
+
+| Model or resource | Audience or group | Allowed operations | Record scope or rule | Exceptions |
+| --- | --- | --- | --- | --- |
+
+For each documented dependency, explain what capability, model contract, or
+integration it supplies and why this module needs it. Do not merely repeat the
+manifest dependency list; omit routine dependencies that add no useful reader
+context. A concise dependency table is preferred when multiple dependencies
+need explanation:
+
+| Dependency | Capability supplied | Why this module needs it |
+| --- | --- | --- |
 
 Document intentional extension seams such as inheritable methods, hooks,
 mixins, action extension paths, configuration parameters, report customization,
@@ -79,15 +101,13 @@ operational defaults, assess installation, upgrade, and migration impact.
 Document operational impact, migration expectations, and new administrator
 responsibilities where applicable.
 
-## Verification
+## Documentation consistency
 
 Before finishing, verify that touched module READMEs match code. For repository
-changes, verify root guidance, indexes, and local rules agree. Run existing
-automated checks or make an explicit manual consistency review when none exist.
-Use relevant entrypoints such as tagged tests, installation or upgrade checks,
-report rendering, security smoke tests, scheduled-action checks, integration
-validation, and migration validation. Do not duplicate generic root procedures
-in module documentation.
+changes, verify root guidance, indexes, and local rules agree. Do not prescribe
+or duplicate standard Odoo test procedures; document only module-specific
+validation or operational checks when they materially affect safe use or
+maintenance.
 
 ## Precedence
 
